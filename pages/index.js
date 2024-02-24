@@ -4,9 +4,12 @@ import { BaseLayout } from "@components/ui/layout";
 import { OrderCard } from "@components/ui/order";
 import { EthRates, WalletBar } from "@components/ui/web3";
 import { getAllCourses } from "@content/courses/fetcher";
+import { useWeb3 } from "@components/providers";
 
 export default function Home(props) {
-  const {courses} = props;
+  const { courses } = props;
+  const web3Api = useWeb3();
+  
   return (
     <>
       <Hero />
