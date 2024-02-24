@@ -42,9 +42,10 @@ export default function Web3Provider({ children }) {
     return {
         ...web3Api,
         isWeb3Loaded: web3Api.web3 != null,
-        getHooks: () => setupHooks(web3Api.web3),
+        getHooks: () => setupHooks(web3Api.web3, web3Api.provider),
         connect: web3Api.provider ? async () => {
             try {
+                console.log('console.log account connect');
                 await web3Api.provider.request({method: 'eth_requestAccounts'});
             } catch(err) {
                 console.error('cannot retrieve accounts');
@@ -64,7 +65,8 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-    const { getHooks } = useWeb3()
+    const { getHooks } = useWeb3();
+    console.log('getHooks', getHooks);
     return cb(getHooks())
   }
   
