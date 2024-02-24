@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Footer() {
   const router = useRouter();
   const web3Api = useWeb3();
-  const account = useAccount();
+  const { account } = useAccount();
 
   const { pathname } = router;
   const { connect, isWeb3Loaded, isLoading } = web3Api;
