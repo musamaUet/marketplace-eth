@@ -1,8 +1,8 @@
-import { Hero } from "@components/common"
-import { CourseList } from "@components/course";
-import { BaseLayout } from "@components/layout";
-import { OrderCard } from "@components/order";
-import { EthRates, WalletBar } from "@components/web3";
+import { Hero } from "@components/ui/common"
+import { CourseList } from "@components/ui/course";
+import { BaseLayout } from "@components/ui/layout";
+import { OrderCard } from "@components/ui/order";
+import { EthRates, WalletBar } from "@components/ui/web3";
 import { getAllCourses } from "@content/courses/fetcher";
 
 export default function Home(props) {
