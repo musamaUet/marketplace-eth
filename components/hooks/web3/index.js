@@ -18,3 +18,14 @@ export const useNetwork = () => {
   const swrRes = useHooks(hooks => hooks.useNetwork())
   return { network: swrRes }
 }
+
+export const useWalletInfo = () => {
+    const { account } = useAccount()
+    const { network } = useNetwork()
+  
+    return {
+      account,
+      network,
+      canPurchaseCourse: !!(account.data && network.isSupported)
+    }
+  }
