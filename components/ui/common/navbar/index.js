@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "../button";
 import { useAccount } from "@components/hooks/web3";
 import { useRouter } from "next/router";
+import ActiveLink from "../link";
 
 
 export default function Navbar() {
@@ -11,7 +12,7 @@ export default function Navbar() {
   const { account } = useAccount();
 
   const { pathname } = router;
-  const { connect, web3, isLoading, requireInstall } = web3Api;
+  const { connect, isLoading, requireInstall } = web3Api;
 
   return (
     <section>
@@ -19,32 +20,32 @@ export default function Navbar() {
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between">
             <div>
-              <Link
+              <ActiveLink
                 href="/"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
-                Home
-              </Link>
-              <Link
+                <span>Home</span>
+              </ActiveLink>
+              <ActiveLink
                 href="/marketplace"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
-                Marketplace
-              </Link>
-              <Link
-                href="/"
+                <span>Marketplace</span>
+              </ActiveLink>
+              <ActiveLink
+                href="/blogs"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
-                Blogs
-              </Link>
+                <span>Blogs</span>
+              </ActiveLink>
             </div>
             <div>
-              <Link
+              <ActiveLink
                 href="/"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
-                Wishlist
-              </Link>
+                <span>Wishlist</span>
+              </ActiveLink>
               {isLoading ? (
                 <Button disabled={true} onClick={connect}>
                   Loading...
