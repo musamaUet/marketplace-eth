@@ -5,13 +5,13 @@ import { useAccount } from "@components/hooks/web3";
 import { useRouter } from "next/router";
 
 
-export default function Footer() {
+export default function Navbar() {
   const router = useRouter();
   const web3Api = useWeb3();
   const { account } = useAccount();
 
   const { pathname } = router;
-  const { connect, isWeb3Loaded, isLoading } = web3Api;
+  const { connect, web3, isLoading, requireInstall } = web3Api;
 
   return (
     <section>
@@ -49,13 +49,22 @@ export default function Footer() {
                 <Button disabled={true} onClick={connect}>
                   Loading...
                 </Button>
-              ) : (isWeb3Loaded && account?.data) ? (
-                <Button onClick={connect}>Connect</Button>
-              ) : (
+              ) : account?.data ? (
+                <Button
+                  hoverable={false}
+                  className="cursor-default">
+                  Hi there {account.isAdmin && "Admin"}
+                </Button>
+              ) : requireInstall ? (
                 <Button onClick={() => window.open("https://metamask.io/download.html", "_blank")}>
                   Install Metamask
                 </Button>
-              )}
+              ) :
+                <Button
+                  onClick={connect}>
+                  Connect
+                </Button>
+              }
             </div>
           </div>
         </nav>

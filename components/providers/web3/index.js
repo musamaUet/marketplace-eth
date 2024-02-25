@@ -11,6 +11,7 @@ export default function Web3Provider({ children }) {
     web3: null,
     contract: null,
     isLoading: false,
+    hooks: setupHooks()
   });
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Web3Provider({ children }) {
             provider,
             contract: null,
             isLoading: false,
+            hooks: setupHooks(web3, provider)
           });
         } else {
           setWeb3Api((api) => ({
@@ -39,14 +41,15 @@ export default function Web3Provider({ children }) {
   }, []);
 
   const _web3Api = useMemo(() => {
+    const { web3, provider, isLoading } = web3Api
     return {
         ...web3Api,
-        isWeb3Loaded: web3Api.web3 != null,
-        getHooks: () => setupHooks(web3Api.web3, web3Api.provider),
-        connect: web3Api.provider ? async () => {
+        // isWeb3Loaded: web3Api.web3 != null,
+        requireInstall: !isLoading && !web3 ,
+        connect: provider ? async () => {
             try {
                 console.log('console.log account connect');
-                await web3Api.provider.request({method: 'eth_requestAccounts'});
+                await provider.request({method: 'eth_requestAccounts'});
             } catch(err) {
                 console.error('cannot retrieve accounts');
                 location.reload();
@@ -65,7 +68,7 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-    const { getHooks } = useWeb3();
-    return cb(getHooks())
+    const { hooks } = useWeb3();
+    return cb(hooks)
   }
   
