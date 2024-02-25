@@ -1,7 +1,7 @@
 import { useWeb3 } from "@components/providers";
 import Link from "next/link";
 import Button from "../button";
-import { useAccount } from "@components/hooks/web3/useAccount";
+import { useAccount } from "@components/hooks/web3";
 import { useRouter } from "next/router";
 
 
@@ -12,7 +12,6 @@ export default function Footer() {
 
   const { pathname } = router;
   const { connect, isWeb3Loaded, isLoading } = web3Api;
-
 
   return (
     <section>
