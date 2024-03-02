@@ -22,6 +22,7 @@ export default function Web3Provider({ children }) {
         if (provider) {
           const web3 = new Web3(provider);
           const contract = await loadContrat('CourseMarketplace', provider);
+          console.log('loadContract', contract);
           setWeb3Api({
             web3,
             provider,
