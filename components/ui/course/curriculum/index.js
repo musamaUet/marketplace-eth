@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const lectures = [
   "How to init App",
   "How to get a help",

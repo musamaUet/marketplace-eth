@@ -4,7 +4,9 @@ const SIZES = {
   lg: "w-12 h-12",
 };
 
-export default function Loader() {
+export default function Loader(props) {
+  const { size } = props;
+  
   return (
     <div className={`sk-fading-circle ${SIZES[size]}`}>
       {Array.from({ length: 12 }).map((_, i) => (
